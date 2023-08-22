@@ -1,0 +1,120 @@
+*{
+    box-sizing: border-box;
+    font-family: 'poppins';
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #001e4d;
+}
+.container{
+    background: #fff;
+    padding: 30px;
+    margin: 100px auto 0px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    display: none;
+}
+.app h1{
+ font-size: 25px;
+ font-weight: 600;
+ padding-bottom: 30px;
+ border-bottom: 1px solid #333;
+ color: #001e4d;
+}
+.quiz{
+    padding: 20px 0;
+}
+.quiz h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: #001e4d;
+}
+.btn{
+    background: #fff;
+    color: #222;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #222;
+    color: #fff;
+}
+.next-btn{
+    background: #001e4d;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    width:150px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    /* display: none; */
+}
+.next-btn:hover{
+    transform: scale(1.05);
+}
+.question{
+    margin: 20px 0px 30px 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.choices{
+    font-size: 18px;
+    margin: 8px 0px 8px 0;
+}
+.choice{
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #c4c2c2;
+    cursor: pointer;
+}
+.choice.selected{
+    background: #1c3c70;
+    color: #fff;
+}
+.choice:hover{
+    background: #1c3c70;
+}
+.scoreCard{
+    margin-top: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #7a1b1b;
+}
+.alert{
+    background: #5d936b;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+    display: none;
+    color: #fff;
+}
+body .start{
+    background: #1c3c70;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px;
+    width:150px;
+    text-align: center;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute; 
+    top: 45%;
+    left: 45%; 
+}
+.start:hover{
+    transform: scale(1.05);
+}

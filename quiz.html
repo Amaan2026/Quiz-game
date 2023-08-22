@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="shortcut icon" href="https://runpee.com/wp-content/uploads/2018/07/quiz-icon-blue.png" type="image/x-icon">
+</head> 
+<body>
+    <div class="alert">Alert</div>
+    <div class="start">Start Quiz</div>
+    <div class="container">
+        <h1>Simple Quiz</h1>
+        <div class="question"></div>
+        <div class="choices"></div>
+        <button class="next-btn">Next</button> 
+        <div class="scoreCard"></div>
+    </div>
+    <script>
+        const questions=[
+            {
+                question:"Q. Which is the debut song of Dreamcatcher?",
+                choices:["Chase me","Good-Night", "Fly High","Deja-vu"],
+                answer:"Chase me"
+            },
+           
+            {
+                question:"Q. Which is the latest song of Dreamcatcher?",
+                choices:["Oddeye","Bonvoyage", "Reason","Maison"],
+                answer:"Bonvoyage"
+            },
+            {
+                question:"Q. Which most views music video of Dreamcatcher?",
+                choices:["Scream","Because", "Oddeye","Boca"],
+                answer:"Boca"
+            },
+            {
+                question:"Q. Which has been the title track of Dreamcatcher?",
+                choices:["Propose","Whistle", "Fly high","Redsun"],
+                answer:"Fly high"
+            },
+            {
+                question:"Q. Which is the fandom name of Dreamcatcher?",
+                choices:["Sleeper","Nightmare", "Dreamer","Insomnia"],
+                answer:"Insomnia"
+            }
+           
+        ];
+       const container = document.querySelector('.container');
+       const questionBox = document.querySelector('.question');
+       const choicesBox = document.querySelector('.choices');
+       const nextButton = document.querySelector('.next-btn');
+       const scoreCard = document.querySelector('.scoreCard');
+       const alert = document.querySelector('.alert');
+       const startButton = document.querySelector('.start');
+       
+       
+       const startQuiz=()=>{
+        showButtons();
+       }
+       startButton.addEventListener('click',()=>{
+        startButton.style.display="none";
+        container.style.display="block";
+        startQuiz();
+       }) 
+       
+       let currentQuestionIndex=0;
+       let score=0;
+       let quizOver=false;
+       
+     
+       const showButtons=()=>{
+        const questionDetails = questions[currentQuestionIndex];
+       questionBox.textContent = questionDetails.question;
+       
+       choicesBox.textContent=""
+       for(let i=0;i<questionDetails.choices.length;i++){
+        const currentChoice=questionDetails.choices[i];
+        const choiceDiv= document.createElement('div');
+        choiceDiv.classList.add('choice');
+        choiceDiv.textContent=currentChoice;
+        choicesBox.appendChild(choiceDiv);
+
+        choiceDiv.addEventListener('click',()=>{
+            if(choiceDiv.classList.contains('selected')){
+                choiceDiv.classList.remove('selected');
+            }
+            else{
+                choiceDiv.classList.add('selected');
+            }
+        })
+       
+       }
+       }
+
+       const displayAlert=(msg)=>{
+        alert.style.display="Block";
+        alert.textContent=msg;
+        setTimeout(()=>{
+            alert.style.display="none";
+        },2000)
+       }
+       const checkAnswer =()=>{
+        const selectedChoice =document.querySelector('.choice.selected');
+        if(selectedChoice.textContent===questions[currentQuestionIndex].answer){
+            displayAlert("Congratulation! Correct answer")
+            score++;
+        }
+        else{
+            displayAlert(`Oops! Wrong answer. ${questions[currentQuestionIndex].answer} is the correct answer.`)
+        }
+        
+        currentQuestionIndex++;
+        if(currentQuestionIndex < questions.length){
+        showButtons();
+        }
+        else{
+            showScore();
+
+            quizOver=true;
+        }
+       }
+        
+
+       const showScore =()=>{
+        questionBox.textContent=""
+        choicesBox.textContent=""
+        scoreCard.textContent=`You got ${score} out of ${questions.length}`;
+        displayAlert("You have completed this quiz!")
+        nextButton.textContent="Play Again";
+       }
+       nextButton.addEventListener('click',()=>{
+        const selectedChoice=document.querySelector('.choice.selected');
+        if(!selectedChoice && nextButton.textContent==="Next"){
+            displayAlert("Select Answer")
+            return
+        }
+        if(quizOver){
+            nextButton.textContent="Next";
+            scoreCard.textContent=""
+            currentQuestionIndex=0;
+            showButtons();
+            quizOver=false;
+            score=0;
+        }
+        else{
+            checkAnswer();
+        }
+        
+       });
+       
+    </script>
+</body>
+</html>
